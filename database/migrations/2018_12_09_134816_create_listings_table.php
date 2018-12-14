@@ -22,12 +22,26 @@ class CreateListingsTable extends Migration
             $table->string('slug')->unique();
             $table->text('description')->nullable();
             $table->integer('manufactured_year');
+            $table->string('feature_image')->nullable();
+
+
+            $table->boolean('is_hourly')->default(TRUE)->comment('Available for hourly rental');
             $table->decimal('hourly_price')->default(0);
+
+            $table->boolean('is_daily')->default(TRUE)->comment('Available for daily rental');
             $table->decimal('daily_price')->default(0);
+
+            $table->boolean('is_weekly')->default(TRUE)->comment('Available for weekly rental');
             $table->decimal('weekly_price')->default(0);
+
+            $table->boolean('is_monthly')->default(TRUE)->comment('Available for monthly rental');
             $table->decimal('monthly_price')->default(0);
+
+            $table->boolean('is_annual')->default(TRUE)->comment('Available for annual rental');
             $table->decimal('annual_price')->default(0);
-            $table->boolean('blocked')->default(FALSE);
+
+            $table->boolean('blocked')->default(FALSE)->comment('Define is this listing is blocked by system or not');
+            $table->boolean('booked')->default(FALSE)->comment('Define is this listing is on booking (set by the owner)');
             $table->timestamps();
         });
     }
