@@ -19,6 +19,12 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->boolean('is_blocked')->default(FALSE);
+
+            //Address
+            $table->integer('province_id')->nullable();
+            $table->integer('city_id')->nullable();
+            $table->integer('district_id')->nullable();
+            
             $table->rememberToken();
             $table->timestamps();
         });

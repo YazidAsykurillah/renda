@@ -1,5 +1,9 @@
 @extends('layouts.front-end.index')
 
+@section('custom_styles')
+<link type="text/css" rel="stylesheet" href="css/welcome.css"/>
+@endsection
+
 @section('content')
         <!-- SECTION -->
         <div class="section">
@@ -60,9 +64,9 @@
                             <div class="store-sort">
                                 <label>
                                     Sort By:
-                                    <select class="input-select">
-                                        <option value="0">Popular</option>
-                                        <option value="1">Position</option>
+                                    <select class="input-select" name="sort_by">
+                                        <option value="latest">Latest</option>
+                                        <option value="popularity">Popular</option>
                                     </select>
                                 </label>
 
@@ -92,7 +96,7 @@
                                             <img src="./img/product01.png" alt="">
                                             <div class="product-label">
                                                 <span class="product-location"> 
-                                                    <i class="fa fa-map-pin"></i> DKI Jakarta / Jakarta Selatan
+                                                    <i class="fa fa-map-pin"></i> {{ $listing->province->name }} / {{$listing->city->name}}
                                                 </span>
                                             </div>
                                         </div>

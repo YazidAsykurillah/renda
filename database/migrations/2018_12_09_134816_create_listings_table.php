@@ -24,6 +24,11 @@ class CreateListingsTable extends Migration
             $table->integer('manufactured_year');
             $table->string('feature_image')->nullable();
 
+            //Address
+            $table->integer('province_id')->nullable();
+            $table->integer('city_id')->nullable();
+            $table->integer('district_id')->nullable();
+
 
             $table->boolean('is_hourly')->default(TRUE)->comment('Available for hourly rental');
             $table->decimal('hourly_price')->default(0);

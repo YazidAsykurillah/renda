@@ -29,4 +29,20 @@ class Listing extends Model
     {
     	return $this->belongsTo('App\User');
     }
+
+    //Address
+    public function Province()
+    {
+        return $this->belongsTo('App\Province');
+    }
+
+    public function city()
+    {
+        return $this->belongsTo('App\City');
+    }
+
+    public function district()
+    {
+        return $this->belongsTo('App\District');
+    }
 }
