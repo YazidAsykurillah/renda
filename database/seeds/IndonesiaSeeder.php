@@ -12,6 +12,9 @@ class IndonesiaSeeder extends Seeder
      */
     public function run()
     {
+        \DB::table('provinces')->delete();
+        \DB::table('cities')->delete();
+        \DB::table('districts')->delete();
         // import provinces and cities from sql file
         $sqlFile = app_path() . '/../database/raw/administrative_indonesia_without_districts.sql';
         DB::unprepared(file_get_contents($sqlFile));

@@ -45,8 +45,8 @@ class CreateListingsTable extends Migration
             $table->boolean('is_annual')->default(TRUE)->comment('Available for annual rental');
             $table->decimal('annual_price')->default(0);
 
-            $table->boolean('blocked')->default(FALSE)->comment('Define is this listing is blocked by system or not');
-            $table->boolean('booked')->default(FALSE)->comment('Define is this listing is on booking (set by the owner)');
+            $table->boolean('is_blocked')->default(FALSE)->comment('Define is this listing is blocked by system or not');
+            $table->boolean('is_booked')->default(FALSE)->comment('Define is this listing is on booking (set by the owner)');
             $table->timestamps();
         });
     }
