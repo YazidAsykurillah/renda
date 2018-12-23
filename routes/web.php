@@ -12,3 +12,9 @@
 */
 
 Route::get('/','WelcomeController@index');
+
+Route::get('car', 'CarController@index');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
