@@ -16,9 +16,10 @@
 
     <!-- Core Style CSS -->
     <link rel="stylesheet" href="css/core-style.css">
-    <link rel="stylesheet" href="style.css">
+    <!--Custom Style-->
+    <link rel="stylesheet" href="css/style.css">
 
-    @yield('custom_styles')
+    @yield('additional_styles')
 </head>
 
 <body>
@@ -50,7 +51,7 @@
     <script src="js/classy-nav.min.js"></script>
     <!-- Active js -->
     <script src="js/active.js"></script>
-    @yield('custom_scripts')
+    @yield('additional_scripts')
 </body>
 
 </html>

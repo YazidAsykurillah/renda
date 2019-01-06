@@ -10,9 +10,12 @@ class Listing extends Model
 
     protected $fillable = [
     	'user_id', 'category_id', 'brand_id', 'title', 'slug', 'description', 'manufactured_year', 'feature_image',
+        'transmission', 'cylinder_capacity',
+        //Address
+        'city_id',
         'is_hourly', 'is_daily', 'is_weekly', 'is_monthly', 'is_annual',
     	'hourly_price', 'daily_price', 'weekly_price', 'monthly_price', 'annual_price',
-        'blocked', 'booked'
+        'is_blocked', 'is_booked'
     ];
 
     public function category()
@@ -30,19 +33,10 @@ class Listing extends Model
     	return $this->belongsTo('App\User');
     }
 
-    //Address
-    public function Province()
-    {
-        return $this->belongsTo('App\Province');
-    }
 
     public function city()
     {
         return $this->belongsTo('App\City');
     }
 
-    public function district()
-    {
-        return $this->belongsTo('App\District');
-    }
 }
