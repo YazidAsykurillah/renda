@@ -15,6 +15,7 @@ $factory->define(App\Listing::class, function (Faker $faker) {
 	$brand_ids = Brand::all()->pluck('id')->toArray();
 
 	$title = $faker->text(10);
+    $slug = str_slug($title.'-'.$faker->uuid());
     $years = [2000, 2005, 2010, 2015, 2017];
     $transmissions = ['manual', 'automatic', 'other'];
     $city_ids = City::all()->pluck('id')->toArray();
@@ -26,8 +27,7 @@ $factory->define(App\Listing::class, function (Faker $faker) {
         'category_id' => $faker->randomElement($category_ids),
         'brand_id' => $faker->randomElement($brand_ids),
         'title' => $title,
-        'slug' => str_slug($title).'-'.$faker->uuid(),
-        'slug'=>$faker->sentence(10),
+        'slug' => $slug,
         'manufactured_year' => $faker->randomElement($years),
         'transmission'=>$faker->randomElement($transmissions),
         'cylinder_capacity'=>$faker->biasedNumberBetween($min = 1000, $max = 2000, $function = 'sqrt'),

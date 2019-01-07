@@ -7,7 +7,7 @@
             <div class="row h-100 align-items-center">
                 <div class="col-12">
                     <div class="page-title text-center">
-                        <h2>{{ $listingBreadcrumb }}</h2>
+                        <h2>{{ $listingCategory }}</h2>
                     </div>
                 </div>
             </div>
@@ -21,40 +21,21 @@
             <div class="row">
                 <div class="col-12 col-md-4 col-lg-3">
                     <div class="shop_sidebar_area">
+                        <h6>Search Filter</h6>
 
-                        <!-- ##### Single Widget ##### -->
-                        <div class="widget price mb-50">
-                            <!-- Widget Title -->
-                            <h6 class="widget-title mb-30">Filter by</h6>
-                            <!-- Widget Title 2 -->
-                            <p class="widget-title2 mb-30">Price</p>
-                            <div class="widget-desc">
-                                <div class="slider-range">
-                                    <div data-min="49" data-max="360" data-unit="$" class="slider-range-price ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" data-value-min="49" data-value-max="360" data-label-result="Range:">
-                                        <div class="ui-slider-range ui-widget-header ui-corner-all"></div>
-                                        <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span>
-                                        <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span>
-                                    </div>
-                                    <div class="range-price">Range: $49.00 - $360.00</div>
-                                </div>
+                        <form>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Brand</label>
+                                <select name="brand" class="form-control">
+                                  <option>1</option>
+                                  <option>2</option>
+                                  <option>3</option>
+                                  <option>4</option>
+                                  <option>5</option>
+                                </select>
                             </div>
-                        </div>
-
-                       
-                        <!-- ##### Single Widget ##### -->
-                        <div class="widget brands mb-50">
-                            <!-- Widget Title 2 -->
-                            <p class="widget-title2 mb-30">Brands</p>
-                            <div class="widget-desc">
-                                <ul>
-                                    <li><a href="#">Asos</a></li>
-                                    <li><a href="#">Mango</a></li>
-                                    <li><a href="#">River Island</a></li>
-                                    <li><a href="#">Topshop</a></li>
-                                    <li><a href="#">Zara</a></li>
-                                </ul>
-                            </div>
-                        </div>
+                            <button type="submit" class="btn btn-default">Apply</button>
+                        </form>
                     </div>
                 </div>
 
@@ -65,7 +46,7 @@
                                 <div class="product-topbar d-flex align-items-center justify-content-between">
                                     <!-- Total Products -->
                                     <div class="total-products">
-                                        <p><span>186</span> products found</p>
+                                        <p><span>{{$results->total() }} </span> {{$listingCategory}} found</p>
                                     </div>
                                     <!-- Sorting -->
                                     <div class="product-sorting d-flex">
@@ -85,7 +66,7 @@
                         </div>
 
                         <div class="row">
-                            @if($results->count() > 0)
+                            @if($results->total() > 0)
                                 @foreach($results as $result)
                                 <!-- Single Product -->
                                 <div class="col-12 col-sm-6 col-lg-4">
@@ -112,8 +93,15 @@
                                                 <h6>{{ $result->title }}</h6>
                                             </a>
                                             <p>
+                                                <i class="fa fa-flag" title="Brand"></i> {{ ucwords($result->brand->name) }}
+                                            </p>
+                                            <p>
                                                 <i class="fa fa-calendar"></i> {{ $result->manufactured_year}}
-                                                <i class="fa fa-calendar"></i> {{ $result->cylinder_capacity}}
+                                                &nbsp;&nbsp;
+                                                <i class="fa fa-gears"></i> {{ ucwords($result->transmission)}}
+                                                &nbsp;&nbsp;
+                                                <i class="fa fa-fire"></i> {{ $result->cylinder_capacity}}cc
+
                                             </p>
                                             <div class="price-information">
                                                 <p class="price-information-title">
@@ -167,13 +155,7 @@
                     <!-- Pagination -->
                     <nav aria-label="navigation">
                         <ul class="pagination mt-50 mb-70">
-                            <li class="page-item"><a class="page-link" href="#"><i class="fa fa-angle-left"></i></a></li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">...</a></li>
-                            <li class="page-item"><a class="page-link" href="#">21</a></li>
-                            <li class="page-item"><a class="page-link" href="#"><i class="fa fa-angle-right"></i></a></li>
+                            {{ $results->links() }}
                         </ul>
                     </nav>
                 </div>

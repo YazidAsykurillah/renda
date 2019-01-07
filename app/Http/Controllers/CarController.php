@@ -9,7 +9,7 @@ use App\Category;
 
 class CarController extends Controller
 {
-	protected $listingBreadcrumb = 'Car';
+	protected $listingCategory = 'Car';
 	protected $categoryName = '';
 	protected $category_id = 1;
 
@@ -21,9 +21,9 @@ class CarController extends Controller
 
     public function index(Request $request)
     {
-    	$results = Listing::where('category_id', $this->category_id)->get();
+    	$results = Listing::where('category_id', $this->category_id)->paginate(9);
     	return view('listing/index')
-    		->with('listingBreadcrumb', $this->listingBreadcrumb)
+    		->with('listingCategory', $this->listingCategory)
     		->with('results', $results);
     }
 }
